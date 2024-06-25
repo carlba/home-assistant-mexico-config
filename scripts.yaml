@@ -11,53 +11,49 @@ set_air_purifier_speed:
           sequence:
             - service: fan.turn_off
               target:
-                entity_id: fan.zhimi_airpurifier_mb3
+                entity_id: "{{ entity_id }}"
         - conditions:
             - condition: template
               value_template: "{{ percentage > 0 }}"
           sequence:
             - service: number.set_value
               target:
-                entity_id: number.zhimi_airpurifier_mb3_favorite_level
+                entity_id: "{{ favorite_level_entity_id }}"
               data:
                 value: "{{ ((percentage - (100/15 | round(0))) * 15/100) | round(0)}}"
             - service: fan.set_preset_mode
               target:
-                entity_id: fan.zhimi_airpurifier_mb3
+                entity_id: "{{ entity_id }}"
               data:
                 preset_mode: Favorite
             - service: fan.turn_on
               target:
-                entity_id: fan.zhimi_airpurifier_mb3
+                entity_id: "{{ entity_id }}"
   mode: single
 turn_air_purifier_on:
   sequence:
     - choose:
         - conditions:
             - condition: template
-              value_template:
-                "{{ state_attr('fan.air_purifier_virtual', 'percentage')
-                == 0}}"
+              value_template: "{{ percentage == 0 }}"
           sequence:
             - service: fan.set_percentage
               target:
-                entity_id: fan.air_purifier_virtual
+                entity_id: "{{ virtual_entity_id }}"
               data:
                 percentage: 7
         - conditions:
             - condition: template
-              value_template:
-                "{{ state_attr('fan.air_purifier_virtual', 'percentage')
-                > 0 }}"
+              value_template: "{{ percentage > 0 }}"
           sequence:
             - service: fan.set_preset_mode
               target:
-                entity_id: fan.zhimi_airpurifier_mb3
+                entity_id: "{{ entity_id }}"
               data:
                 preset_mode: Favorite
             - service: fan.turn_on
               target:
                 entity_id:
-                  - fan.zhimi_airpurifier_mb3
+                  - "{{ entity_id }}"
               data: {}
   mode: single

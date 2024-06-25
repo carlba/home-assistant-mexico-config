@@ -6,20 +6,16 @@
       brightness: 255
       color_temp: 500
       state: "on"
-    fan.zhimi_airpurifier_mb3:
+    fan.air_purifier_virtual:
+      percentage: 13
       state: "on"
-      preset_mode: Favorite
-    number.zhimi_airpurifier_mb3_favorite_level:
-      state: "2"
-    number.zhimi_airpurifier_mb3_favorite_level_2:
-      state: "5"
-    fan.zhimi_airpurifier_mb3_2:
+    fan.air_purifier_virtual_2:
+      percentage: 40
       state: "on"
-      preset_mode: Favorite
   metadata:
-    number.zhimi_airpurifier_mb3_favorite_level:
+    fan.air_purifier_virtual:
       entity_only: true
-    number.zhimi_airpurifier_mb3_favorite_level_2:
+    fan.air_purifier_virtual_2:
       entity_only: true
 - id: "1719292989410"
   name: Carls Office Daytime
@@ -37,9 +33,12 @@
       state: "off"
     light.orein_smart_bulb_002:
       state: "off"
-    fan.zhimi_airpurifier_mb3_2:
-      preset_mode: Favorite
+    fan.air_purifier_virtual:
       state: "off"
-    fan.zhimi_airpurifier_mb3:
+    fan.air_purifier_virtual_2:
       state: "off"
-  metadata: {}
+  metadata:
+    fan.air_purifier_virtual:
+      entity_only: true
+    fan.air_purifier_virtual_2:
+      entity_only: true

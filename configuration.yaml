@@ -5,6 +5,10 @@ default_config:
 frontend:
   themes: !include_dir_merge_named themes
 
+homeassistant:
+  allowlist_external_dirs:
+    - "/config"
+
 api:
 
 fan:
@@ -15,9 +19,13 @@ fan:
         friendly_name: "Air Purifier Virtual"
         value_template: "{{ states('fan.zhimi_airpurifier_mb3') }}"
         percentage_template: >
-          {{ ((states(' number.zhimi_airpurifier_mb3_favorite_level') | int + 1) * 100/15) | round(0) }}
+          {{ ((states('number.zhimi_airpurifier_mb3_favorite_level') | int + 1) * 100/15) | round(0) }}
         turn_on:
           service: script.turn_air_purifier_on
+          data_template:
+            percentage: "{{ ((states('number.zhimi_airpurifier_mb3_favorite_level') | int + 1) * 100/15) | round(0) }}"
+            entity_id: fan.zhimi_airpurifier_mb3
+            virtual_entity_id: fan.air_purifier_virtual
         turn_off:
           service: fan.turn_off
           data:
@@ -26,6 +34,31 @@ fan:
           service: script.set_air_purifier_speed
           data_template:
             percentage: "{{ percentage }}"
+            entity_id: fan.zhimi_airpurifier_mb3
+            favorite_level_entity_id: number.zhimi_airpurifier_mb3_favorite_level
+        speed_count: 15
+      air_purifier_virtual_2:
+        unique_id: "air_purifier_virtual_2"
+        friendly_name: "Air Purifier Virtual 2"
+        value_template: "{{ states('fan.zhimi_airpurifier_mb3_2') }}"
+        percentage_template: >
+          {{ ((states('number.zhimi_airpurifier_mb3_favorite_level_2') | int + 1) * 100/15) | round(0) }}
+        turn_on:
+          service: script.turn_air_purifier_on
+          data_template:
+            percentage: "{{ ((states('number.zhimi_airpurifier_mb3_favorite_level_2') | int + 1) * 100/15) | round(0) }}"
+            entity_id: fan.zhimi_airpurifier_mb3_2
+            virtual_entity_id: fan.air_purifier_virtual_2
+        turn_off:
+          service: fan.turn_off
+          data:
+            entity_id: fan.zhimi_airpurifier_mb3_2
+        set_percentage:
+          service: script.set_air_purifier_speed
+          data_template:
+            percentage: "{{ percentage }}"
+            entity_id: fan.zhimi_airpurifier_mb3_2
+            favorite_level_entity_id: number.zhimi_airpurifier_mb3_favorite_level_2
         speed_count: 15
 
 automation: !include automations.yaml
