@@ -8,12 +8,14 @@
       state: "on"
     fan.zhimi_airpurifier_mb3:
       state: "on"
+      preset_mode: Favorite
     number.zhimi_airpurifier_mb3_favorite_level:
-      state: "4"
+      state: "2"
     number.zhimi_airpurifier_mb3_favorite_level_2:
-      state: "4"
+      state: "5"
     fan.zhimi_airpurifier_mb3_2:
       state: "on"
+      preset_mode: Favorite
   metadata:
     number.zhimi_airpurifier_mb3_favorite_level:
       entity_only: true
@@ -40,5 +42,4 @@
       state: "off"
     fan.zhimi_airpurifier_mb3:
       state: "off"
-  icon: mdi:sleep
   metadata: {}
