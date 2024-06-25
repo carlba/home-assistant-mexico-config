@@ -25,7 +25,17 @@
       brightness: 196
       color_temp: 284
       state: "on"
-  metadata: {}
+    fan.air_purifier_virtual:
+      percentage: 33
+      state: "on"
+    fan.air_purifier_virtual_2:
+      percentage: 40
+      state: "on"
+  metadata:
+    fan.air_purifier_virtual:
+      entity_only: true
+    fan.air_purifier_virtual_2:
+      entity_only: true
 - id: "1719293195306"
   name: Sleep
   entities:
