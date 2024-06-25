@@ -1,15 +1,3 @@
-- alias: Reload Automations on automations.yaml Change
-  trigger:
-    - platform: event
-      event_type: folder_watcher
-      event_data:
-        event_type: modified
-  condition:
-    - condition: template
-      value_template: "{{ trigger.event.data.path == '/config/automations.yaml' }}"
-  action:
-    - service: automation.reload
-
 - alias: Reload Scripts on scripts.yaml Change
   trigger:
     - platform: event
@@ -21,7 +9,7 @@
       value_template: "{{ trigger.event.data.path == '/config/scripts.yaml' }}"
   action:
     - service: script.reload
-
+  id: 0015a02b80bc4c9d885276ef33c14daa
 - alias: Reload Lovelace on ui-lovelace.yaml Change
   trigger:
     - platform: event
@@ -33,7 +21,7 @@
       value_template: "{{ trigger.event.data.path == '/config/ui-lovelace.yaml' }}"
   action:
     - service: lovelace.reload
-
+  id: b533f346b35448e996f6d6b721a69b30
 - alias: Reload Scenes on scenes.yaml Change
   trigger:
     - platform: event
@@ -45,7 +33,7 @@
       value_template: "{{ trigger.event.data.path == '/config/scenes.yaml' }}"
   action:
     - service: scene.reload
-
+  id: ce72b62fe55a4c2686fa651d8966b67b
 - alias: Reload Configuration on configuration.yaml Change
   trigger:
     - platform: event
@@ -54,6 +42,8 @@
         event_type: modified
   condition:
     - condition: template
-      value_template: "{{ trigger.event.data.path == '/config/configuration.yaml' }}"
+      value_template:
+        "{{ trigger.event.data.path == '/config/configuration.yaml'}}"
   action:
     - service: homeassistant.reload_core_config
+  id: 13050ef32ba744209ef4810e207d80c7
