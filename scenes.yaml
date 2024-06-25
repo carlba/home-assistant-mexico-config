@@ -28,20 +28,16 @@
       supported_features: 32
       state: "on"
     fan.zhimi_airpurifier_mb3:
-      preset_modes:
-        - Auto
-        - Silent
-        - Favorite
-        - Fan
       percentage: 33
-      percentage_step: 33.333333333333336
       preset_mode: Favorite
-      use_time: 2193600
-      friendly_name: Xiaomi 3H Office
-      supported_features: 9
       state: "on"
+    number.zhimi_airpurifier_mb3_favorite_level:
+      mode: auto
+      state: "4.0"
   icon: mdi:office-building
-  metadata: {}
+  metadata:
+    number.zhimi_airpurifier_mb3_favorite_level:
+      entity_only: true
 - id: "1719292989410"
   name: Carls Office Daytime
   entities:
@@ -140,6 +136,5 @@
       friendly_name: Xiaomi 3H Office
       supported_features: 9
       state: "on"
-
   icon: mdi:sleep
   metadata: {}
