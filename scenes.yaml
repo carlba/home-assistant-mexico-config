@@ -2,139 +2,43 @@
   name: Carls Office Cozy
   entities:
     light.orein_smart_bulb_001:
-      min_color_temp_kelvin: 2000
-      max_color_temp_kelvin: 6535
-      min_mireds: 153
-      max_mireds: 500
-      supported_color_modes:
-        - color_temp
-        - hs
-        - xy
       color_mode: color_temp
       brightness: 255
-      color_temp_kelvin: 2000
       color_temp: 500
-      hs_color:
-        - 30.601
-        - 94.547
-      rgb_color:
-        - 255
-        - 136
-        - 13
-      xy_color:
-        - 0.599
-        - 0.382
-      friendly_name: Carls Desk Light
-      supported_features: 32
       state: "on"
     fan.zhimi_airpurifier_mb3:
-      percentage: 33
-      preset_mode: Favorite
       state: "on"
     number.zhimi_airpurifier_mb3_favorite_level:
-      mode: auto
-      state: "4.0"
-  icon: mdi:office-building
+      state: "4"
+    number.zhimi_airpurifier_mb3_favorite_level_2:
+      state: "4"
+    fan.zhimi_airpurifier_mb3_2:
+      state: "on"
   metadata:
     number.zhimi_airpurifier_mb3_favorite_level:
+      entity_only: true
+    number.zhimi_airpurifier_mb3_favorite_level_2:
       entity_only: true
 - id: "1719292989410"
   name: Carls Office Daytime
   entities:
     light.orein_smart_bulb_001:
-      min_color_temp_kelvin: 2000
-      max_color_temp_kelvin: 6535
-      min_mireds: 153
-      max_mireds: 500
-      supported_color_modes:
-        - color_temp
-        - hs
-        - xy
       color_mode: color_temp
       brightness: 196
-      color_temp_kelvin: 3521
       color_temp: 284
-      hs_color:
-        - 27.152
-        - 44.32
-      rgb_color:
-        - 255
-        - 193
-        - 141
-      xy_color:
-        - 0.453
-        - 0.374
-      friendly_name: Carls Desk Light
-      supported_features: 32
       state: "on"
-  icon: mdi:office-building
   metadata: {}
 - id: "1719293195306"
   name: Sleep
   entities:
     light.orein_smart_bulb_001:
-      min_color_temp_kelvin: 2000
-      max_color_temp_kelvin: 6535
-      min_mireds: 153
-      max_mireds: 500
-      supported_color_modes:
-        - color_temp
-        - hs
-        - xy
-      color_mode:
-      brightness:
-      color_temp_kelvin:
-      color_temp:
-      hs_color:
-      rgb_color:
-      xy_color:
-      friendly_name: Carls Desk Light
-      supported_features: 32
       state: "off"
     light.orein_smart_bulb_002:
-      min_color_temp_kelvin: 2000
-      max_color_temp_kelvin: 6535
-      min_mireds: 153
-      max_mireds: 500
-      supported_color_modes:
-        - color_temp
-        - hs
-        - xy
-      color_mode:
-      brightness:
-      color_temp_kelvin:
-      color_temp:
-      hs_color:
-      rgb_color:
-      xy_color:
-      friendly_name: Living Room Tripod Lamp
-      supported_features: 32
       state: "off"
     fan.zhimi_airpurifier_mb3_2:
-      preset_modes:
-        - Auto
-        - Silent
-        - Favorite
-        - Fan
-      percentage: 66
-      percentage_step: 33.333333333333336
       preset_mode: Favorite
-      use_time: 2206500
-      friendly_name: Xiaomi 3H Living Room
-      supported_features: 9
-      state: "on"
+      state: "off"
     fan.zhimi_airpurifier_mb3:
-      preset_modes:
-        - Auto
-        - Silent
-        - Favorite
-        - Fan
-      percentage: 33
-      percentage_step: 33.333333333333336
-      preset_mode: Favorite
-      use_time: 2193300
-      friendly_name: Xiaomi 3H Office
-      supported_features: 9
-      state: "on"
+      state: "off"
   icon: mdi:sleep
   metadata: {}
