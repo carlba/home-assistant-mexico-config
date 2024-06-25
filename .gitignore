@@ -5,3 +5,4 @@ custom_components/
 blueprints/
 home-assistant_v2*
 .storage/
+.cloud/
