@@ -11,6 +11,15 @@ homeassistant:
 
 api:
 
+group:
+  garmin:
+    name: Garmin
+    entities:
+      - light.orein_smart_bulb_001
+      - light.orein_smart_bulb_002
+      - light.orein_smart_bulb_003
+      - light.orein_smart_bulb_004
+
 fan:
   - platform: template
     fans:
