@@ -7,6 +7,27 @@ frontend:
 
 api:
 
+fan:
+  - platform: template
+    fans:
+      air_purifier_virtual:
+        unique_id: "air_purifier_virtual"
+        friendly_name: "Air Purifier Virtual"
+        value_template: "{{ states('fan.zhimi_airpurifier_mb3') }}"
+        percentage_template: >
+          {{ ((states(' number.zhimi_airpurifier_mb3_favorite_level') | int + 1) * 100/15) | round(0) }}
+        turn_on:
+          service: script.turn_air_purifier_on
+        turn_off:
+          service: fan.turn_off
+          data:
+            entity_id: fan.zhimi_airpurifier_mb3
+        set_percentage:
+          service: script.set_air_purifier_speed
+          data_template:
+            percentage: "{{ percentage }}"
+        speed_count: 15
+
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
