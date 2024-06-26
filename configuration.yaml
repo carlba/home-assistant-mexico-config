@@ -70,6 +70,66 @@ fan:
             favorite_level_entity_id: number.zhimi_airpurifier_mb3_favorite_level_2
         speed_count: 15
 
+climate:
+  - platform: climate_template
+    name: Google Assistant AC
+    modes:
+      - "auto"
+      - "dry"
+      - "off"
+      - "cool"
+      - "fan_only"
+    min_temp: 16
+    max_temp: 30
+
+    # get current temp.
+    current_temperature_template: "{{ states('sensor.zhimi_airpurifier_mb3_temperature') }}"
+
+    # get current humidity.
+    current_humidity_template: "{{ states('sensor.zhimi_airpurifier_mb3_humidity') }}"
+
+    # swing mode switch for UI.
+    swing_mode_template: "{{ states('input_boolean.living_room_swing_mode') }}"
+
+    # availability based on sensor status.
+    availability_template: "{{ true }}"
+
+    # action for setting hvac mode
+    set_hvac_mode:
+
+      # send the climate's current state to Google Assistant.
+      - service: google_assistant_sdk.send_text_command
+        data_template:
+          command: >
+            {% if hvac_mode == 'cool' %}
+              Set the air conditioner to cool mode
+            {% elif hvac_mode == 'heat' %}
+              Set the air conditioner to heat mode
+            {% elif hvac_mode == 'auto' %}
+              Set the air conditioner to auto mode
+            {% elif hvac_mode == 'dry' %}
+              Set the air conditioner to dry mode
+            {% elif hvac_mode == 'fan_only' %}
+              Set the air conditioner to fan only mode
+            {% else %}
+              Turn off the air conditioner
+            {% endif %}
+      - service: climate.set_temperature
+        target:
+          entity_id: climate.google_assistant_ac
+        data_template:
+          temperature: "{{ state_attr('climate.google_assistant_ac', 'temperature') }}"
+
+    # action for setting temperature
+    set_temperature:
+      - service: google_assistant_sdk.send_text_command
+        data_template:
+          command: "Set the air conditioner to {{ temperature }}C"
+
+input_boolean:
+  living_room_swing_mode:
+    name: Swing Mode
+
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml

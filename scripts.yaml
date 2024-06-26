@@ -55,5 +55,25 @@ turn_air_purifier_on:
               target:
                 entity_id:
                   - "{{ entity_id }}"
-              data: {}
   mode: single
+set_google_assistant_ac_temperature:
+  alias: "Set Google Assistant AC Temperature"
+  sequence:
+    - service: google_assistant_sdk.send_text_command
+      data_template:
+        command: "Set the air conditioner to {{ temperature }}C"
+set_google_assistant_ac_mode:
+  alias: "Set Google Assistant AC Mode"
+  sequence:
+    - service: google_assistant_sdk.send_text_command
+      data_template:
+        command: >
+          {% if hvac_mode == 'cool' %}
+            Set the air conditioner to cool mode
+          {% elif hvac_mode == 'heat' %}
+            Set the air conditioner to heat mode
+          {% elif hvac_mode == 'auto' %}
+            Set the air conditioner to auto mode
+          {% else %}
+            Turn off the air conditioner
+          {% endif %}
