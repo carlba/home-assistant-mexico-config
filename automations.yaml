@@ -1,5 +1,5 @@
-- alias: Reload Automations on automations.yaml Change
-  id: 7ee9869743da4092b56c2bace5b494ad
+- id: 7ee9869743da4092b56c2bace5b494ad
+  alias: Reload Automations on automations.yaml Change
   trigger:
     - platform: event
       event_type: folder_watcher
@@ -10,6 +10,7 @@
       value_template: "{{ trigger.event.data.path == '/config/automations.yaml' }}"
   action:
     - service: automation.reload
+      data: {}
 - alias: Reload Scripts on scripts.yaml Change
   id: af73319f1d7b46458e66c5d48a148073
   trigger:
@@ -58,3 +59,22 @@
       value_template: "{{ trigger.event.data.path == '/config/configuration.yaml'}}"
   action:
     - service: homeassistant.reload_core_config
+- id: "1719421653713"
+  alias: Google Drive on Event
+  description: ""
+  trigger:
+    - platform: event
+      event_type: state_changed
+  condition:
+    - condition: template
+      value_template: "{{ trigger.event.data.entity_id != 'automation.google_drive_on_event_2'}}"
+  action:
+    - service: google_sheets.append_sheet
+      metadata: {}
+      data:
+        config_entry: ee72068cb2d2fc5894f49693f96506fb
+        data:
+          entity_id: "{{ trigger.event.data.entity_id }}"
+          old_state: "{{ trigger.event.data.old_state.state }}"
+          new_state: "{{ trigger.event.data.new_state.state }}"
+  mode: restart
