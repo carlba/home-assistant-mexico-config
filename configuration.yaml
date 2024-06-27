@@ -11,6 +11,17 @@ homeassistant:
 
 api:
 
+influxdb:
+  host: a0d7b954-influxdb
+  port: 8086
+  database: homeassistant
+  username: homeassistant
+  password: homeassistant
+  max_retries: 3
+  default_measurement: state
+  tags_attributes:
+    - friendly_name
+
 group:
   garmin:
     name: Garmin
@@ -96,7 +107,6 @@ climate:
 
     # action for setting hvac mode
     set_hvac_mode:
-
       # send the climate's current state to Google Assistant.
       - service: google_assistant_sdk.send_text_command
         data_template:
