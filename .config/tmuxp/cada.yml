@@ -1,0 +1,12 @@
+session_name: cada
+root: /config
+
+windows:
+
+  - window_name: misc
+    layout: even-horizontal
+    panes:
+      - start_directory: /config
+      - start_directory: /config
+        shell_command:
+          - logs

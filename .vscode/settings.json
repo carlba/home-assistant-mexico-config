@@ -1,2 +1,16 @@
 {
+    "terminal.integrated.profiles.linux": {
+        "logs": {
+          "path": "/bin/zsh",
+          "args": ["-c", "/config/bin/logs"],
+          "overrideName": true
+        },
+        "tmuxp": {
+          "path": "/bin/zsh",
+          "args": ["-c", "/usr/bin/tmuxp load cada"],
+          "overrideName": true
+        },
+        
+      },
+    "terminal.integrated.defaultProfile.linux": "tmuxp"
 }
